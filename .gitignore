@@ -1,0 +1,17 @@
+# virtual envs
+venv/
+
+# precompiled files
+*pyc
+
+# Ide files
+.vscode/
+
+# DB volumen data
+data/
+
+# Python cache
+__pycache__/
+
+# Env local variables
+.env
