@@ -4,8 +4,8 @@ services:
   api:
     build: .
     restart: always
-    ports:
-      - "5000:5000"
+    command: uwsgi --thunder-lock --ini uwsgi.ini 
+    network_mode: host
 
   db:
     restart: always
