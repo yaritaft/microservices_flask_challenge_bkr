@@ -38,6 +38,7 @@ class StateList(Resource):
 @api.response(404, "State not found.")
 class StateDetail(Resource):
     @api.doc("get a state")
+    @api.marshal_list_with(_state_detail, envelope="data")
     def get(self, state_id):
         """get a state given its identifier"""
         state = get_a_state(state_id)

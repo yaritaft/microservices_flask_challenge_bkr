@@ -38,6 +38,7 @@ class UserList(Resource):
 @api.response(404, "User not found.")
 class UserDetail(Resource):
     @api.doc("get a user")
+    @api.marshal_list_with(_user_detail, envelope="data")
     def get(self, user_id):
         """get a user given its identifier"""
         user = get_a_user(user_id)
@@ -47,7 +48,7 @@ class UserDetail(Resource):
 
     @api.doc("Patch a user")
     @api.expect(_user_detail, validate=True)
-    @api.response(204, "User successfully updated.")
+    @api.response(200, "User successfully updated.")
     def patch(self, user_id, envelope="data"):
         """get a user given its identifier"""
         user = get_a_user(user_id)
@@ -59,9 +60,9 @@ class UserDetail(Resource):
             "status": "success",
             "message": "Successfully updated.",
         }
-        return response_object, 204
+        return response_object, 200
 
-    @api.response(204, "User successfully deleted.")
+    @api.response(200, "User successfully deleted.")
     @api.doc("Delete a user")
     def delete(self, user_id):
         """get a user given its identifier"""
@@ -73,4 +74,4 @@ class UserDetail(Resource):
             "status": "success",
             "message": "Successfully deleted.",
         }
-        return response_object, 204
+        return response_object, 200
