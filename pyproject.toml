@@ -23,6 +23,7 @@ exclude = '''
     | dist
     | lint_venv
     | venv
+    | data
     | jupyter_env
     | writing/__pycache__
     | shippingdepartment/__pycache__
