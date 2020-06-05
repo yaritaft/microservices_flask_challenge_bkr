@@ -8,7 +8,7 @@ class User(db.Model):
     id = db.Column(db.Integer, db.Sequence("user_id_seq"), primary_key=True)
     name = db.Column(db.String)
     age = db.Column(db.Integer)
-    state_id = db.Column(db.Integer, db.ForeignKey("state.id"), nullable=False)
+    state_id = db.Column(db.Integer, db.ForeignKey("state.id"))
     state = db.relationship("State")
     updated_at = db.Column(
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow

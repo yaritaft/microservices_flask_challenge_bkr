@@ -24,9 +24,7 @@ exclude = '''
     | lint_venv
     | venv
     | data
-    | jupyter_env
-    | writing/__pycache__
-    | shippingdepartment/__pycache__
+    | migrations
   )/
   | manage.py
   | foo.py           # also separately exclude a file named foo.py in
