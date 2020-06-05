@@ -1,16 +1,25 @@
-from sqlalchemy import Column, create_engine, Integer, String, Date, Sequence
-from sqlalchemy.orm import relationship
+from datetime import datetime
+from .. import db
+from sqlalchemy import Sequence
 
-from . import Base
-
-class State(Base):
-    __tablename__ = 'states'
-    id = Column(Integer, Sequence('state_id_seq', primary_key=True)
-    code = Column(Integer)
-    name = Column(String)
-    state_ = relationship("State")
-    updated_at = Column(Date)
-    created_at = Column(Date)
+class State(db.Model):
+    __tablename__ = 'state'
+    id = db.Column(
+        db.Integer,
+        db.Sequence('state_id_seq'),
+        primary_key=True
+    )
+    code = db.Column(db.Integer, unique=True)
+    name = db.Column(db.String)
+    updated_at = db.Column(
+        db.DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
+    created_at = db.Column(
+        db.DateTime,
+        default=datetime.utcnow
+    )
     def __repr__(self):
         return "<State(name='%s')>" % (
             self.name,

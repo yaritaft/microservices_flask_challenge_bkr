@@ -17,6 +17,11 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+class TestingConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
+    DEBUG = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     DEBUG = False
