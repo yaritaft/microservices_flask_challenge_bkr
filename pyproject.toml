@@ -1,0 +1,34 @@
+[tool.black]
+line-length = 79
+target-version = ['py36']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.vscode    
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | \.__pycache__
+    | __pycache__
+    | cli-ve
+    | \.cli-ve
+    | _build
+    | buck-out
+    | build
+    | dist
+    | lint_venv
+    | venv
+    | jupyter_env
+    | writing/__pycache__
+    | shippingdepartment/__pycache__
+  )/
+  | manage.py
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
