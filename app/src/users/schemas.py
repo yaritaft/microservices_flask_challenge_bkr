@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields
+from marshmallow import fields, Schema
 
 
 class UserSchemaCreation(Schema):
@@ -6,6 +6,7 @@ class UserSchemaCreation(Schema):
     name = fields.Str(required=True)
     age = fields.Int(required=True)
     state_id = fields.Int(required=True)
+
 
 class UserSchemaDetail(Schema):
     id = fields.Int(required=True)
