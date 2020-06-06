@@ -16,6 +16,8 @@ class Config:
 class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     DEBUG = True
+    SQLALCHEMY_POOL_TIMEOUT = 3666
+    SQLALCHEMY_POOL_RECYCLE = 3
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
