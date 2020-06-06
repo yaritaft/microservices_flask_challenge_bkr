@@ -7,11 +7,13 @@
 # python manage.py db migrate --message 'initial database migration' --directory migrations
 
 # STOPING AND STARTING DBS IN CASE THEY WERE PREVIOUSLY RUNNING.
-docker-compose stop db_testing
-docker-compose stop db
+docker-compose down
 docker-compose up -d db
 docker-compose up -d db_testing
 
 # APPLY MIGRATIONS FOR TESTING ANDDEVELOPMENT
 python manage.py db upgrade --directory testing_migrations
 python manage.py db upgrade --directory migrations
+
+# SHUTDOWN DBS
+docker-compose down

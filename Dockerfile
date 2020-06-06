@@ -17,4 +17,4 @@ ADD . /app
 RUN python3 -m pip install -r requirements.txt --no-cache-dir
 RUN apk --purge del .build-deps
 
-CMD su uwsgi -c 'uwsgi uwsgi.ini --thunder-lock'
+# CMD su uwsgi -c 'uwsgi uwsgi.ini --thunder-lock'
