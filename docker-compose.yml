@@ -18,3 +18,16 @@ services:
       POSTGRES_DB: mydatabase
     volumes:
     - ./data:/var/lib/postgresql/data
+
+  db_testing:
+    restart: always
+    image: postgres:11.4-alpine
+    ports:
+      - "5433:5433"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: mytestingdatabase
+    volumes:
+    - ./data:/var/lib/postgresql/data_testing
+  
