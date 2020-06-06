@@ -21,11 +21,6 @@ migrate = Migrate(app, db)
 
 manager.add_command("db", MigrateCommand)
 
-# @app.route("/", methods=["GET"])
-# def get():
-#     from flask import jsonify
-#     return jsonify({"status": "I am alive."})
-
 
 @manager.command
 def load_initial_data():
