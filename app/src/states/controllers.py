@@ -17,17 +17,31 @@ _state_detail = StateDtoDetail.state
 
 @api.route("/")
 class StateList(Resource):
+    """Endpoint to handle new model state instances and get list of states."""
+
     @api.doc("list_of_registered_states")
     @api.marshal_list_with(_state, envelope="data")
     def get(self):
-        """List all registered states"""
+        """Get saved states in db.
+
+        Returns
+        -------
+        Tuple (dict, int)
+            Response object and status code. (dict, int)
+        """
         return get_all_states()
 
     @api.response(201, "State successfully created.")
     @api.doc("create a new state")
     @api.expect(_state, validate=True)
     def post(self):
-        """Creates a new State"""
+        """Create and saved news states in db.
+
+        Returns
+        -------
+        Tuple (dict, int)
+            Response object and status code. (dict, int)
+        """
         data = request.json
         return save_new_state(data=data)
 
@@ -36,10 +50,23 @@ class StateList(Resource):
 @api.param("state_id", "The State identifier")
 @api.response(404, "State not found.")
 class StateDetail(Resource):
+    """Endpoint to handle single model state instances."""
+
     @api.doc("get a state")
     @api.marshal_list_with(_state_detail, envelope="data")
     def get(self, state_id):
-        """Get a state given its identifier"""
+        """Get saved state in db.
+
+        Parameters
+        ----------
+        state_id : int
+            state identifier.
+
+        Returns
+        -------
+        Tuple (dict, int)
+            Response object and status code. (dict, int)
+        """
         state = get_a_state(state_id)
         print(state)
         if not state:
@@ -50,7 +77,18 @@ class StateDetail(Resource):
     @api.expect(_state_detail, validate=True)
     @api.response(200, "State successfully updated.")
     def patch(self, state_id, envelope="data"):
-        """Get a state given its identifier"""
+        """Update saved state in db.
+
+        Parameters
+        ----------
+        state_id : int
+            state identifier.
+
+        Returns
+        -------
+        Tuple (dict, int)
+            Response object and status code. (dict, int)
+        """
         state = get_a_state(state_id)
         data = request.json
         if not state:
@@ -65,7 +103,18 @@ class StateDetail(Resource):
     @api.response(200, "State successfully deleted.")
     @api.doc("Delete a state")
     def delete(self, state_id):
-        """get a state given its identifier"""
+        """Delete state from db.
+
+        Parameters
+        ----------
+        state_id : int
+            state identifier.
+
+        Returns
+        -------
+        Tuple (dict, int)
+            Response object and status code. (dict, int)
+        """
         state = get_a_state(state_id)
         if not state:
             api.abort(404)

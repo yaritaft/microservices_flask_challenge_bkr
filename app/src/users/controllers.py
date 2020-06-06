@@ -17,7 +17,7 @@ _user_detail = UserDtoDetail.user
 
 @api.route("/")
 class UserList(Resource):
-    """Endpoint to handle new model instances and get list of instances."""
+    """Endpoint to handle new model user instances and get list of users."""
 
     @api.doc("list_of_registered_users")
     @api.marshal_list_with(_user, envelope="data")
@@ -50,7 +50,7 @@ class UserList(Resource):
 @api.param("user_id", "The User identifier")
 @api.response(404, "User not found.")
 class UserDetail(Resource):
-    """Endpoint to handle single model instances."""
+    """Endpoint to handle single model user instances."""
 
     @api.doc("get a user")
     @api.marshal_list_with(_user_detail, envelope="data")
