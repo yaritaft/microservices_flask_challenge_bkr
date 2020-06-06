@@ -2,11 +2,11 @@
 
 You have to build a microservice that exposes a REST api with two different
 tables, users and states. Both tables should be open to creation, deletion,
-o update. Every request must only accept this Content-type: application/json.
+or update. Every request must only accept this `Content-type: application/json`.
 
 ### Features
 - [] Create `users` and `states` tables.
-- [] Import data from csv file called `stats.csv` and load in `states` table.
+- [] Import data from csv file called `stats.csv` and load it in `states` table.
 - [] CRUD REST API to interface with `users` table.
 - [] CRUD REST API to interface with `states` table.
 
