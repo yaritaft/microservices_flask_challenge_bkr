@@ -14,6 +14,3 @@ docker-compose up -d db_testing
 # APPLY MIGRATIONS FOR TESTING ANDDEVELOPMENT
 python manage.py db upgrade --directory testing_migrations
 python manage.py db upgrade --directory migrations
-
-# SHUTDOWN DBS
-docker-compose down
