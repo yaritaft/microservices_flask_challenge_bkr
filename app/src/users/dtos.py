@@ -1,7 +1,15 @@
-from flask_restplus import Namespace, fields
+from flask_restplus import fields, Namespace
 
 
 class UserDto:
+    """Serializer to map from single model objects to dict and viceversa.
+
+    It also has validations in order to avoid requesting db if the request
+    is not following some specific rules.
+
+    Used for: get list of resources and post new ones.
+    """
+
     api = Namespace("user", description="user related operations")
     user = api.model(
         "user",
@@ -25,6 +33,14 @@ class UserDto:
 
 
 class UserDtoDetail:
+    """Serializer to map from single model objects to dict and viceversa.
+
+    It also has validations in order to avoid requesting db if the request
+    is not following some specific rules.
+
+    Used for: single get, patch, delete.
+    """
+
     api = Namespace("user", description="user detail related operations")
     user = api.model(
         "user",

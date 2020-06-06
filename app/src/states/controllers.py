@@ -4,8 +4,8 @@ from flask_restplus import Resource
 from .dtos import StateDto, StateDtoDetail
 from .services import (
     delete_state,
-    get_all_states,
     get_a_state,
+    get_all_states,
     save_new_state,
     update_state,
 )
@@ -21,14 +21,13 @@ class StateList(Resource):
     @api.marshal_list_with(_state, envelope="data")
     def get(self):
         """List all registered states"""
-
         return get_all_states()
 
     @api.response(201, "State successfully created.")
     @api.doc("create a new state")
     @api.expect(_state, validate=True)
     def post(self):
-        """Creates a new State """
+        """Creates a new State"""
         data = request.json
         return save_new_state(data=data)
 
@@ -40,7 +39,7 @@ class StateDetail(Resource):
     @api.doc("get a state")
     @api.marshal_list_with(_state_detail, envelope="data")
     def get(self, state_id):
-        """get a state given its identifier"""
+        """Get a state given its identifier"""
         state = get_a_state(state_id)
         print(state)
         if not state:
@@ -51,7 +50,7 @@ class StateDetail(Resource):
     @api.expect(_state_detail, validate=True)
     @api.response(200, "State successfully updated.")
     def patch(self, state_id, envelope="data"):
-        """get a state given its identifier"""
+        """Get a state given its identifier"""
         state = get_a_state(state_id)
         data = request.json
         if not state:

@@ -1,5 +1,5 @@
-from flask_restplus import Api
 from flask import Blueprint
+from flask_restplus import Api
 
 from .src.states.controllers import api as states_endpoint
 from .src.users.controllers import api as users_endpoint

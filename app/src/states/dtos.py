@@ -1,7 +1,15 @@
-from flask_restplus import Namespace, fields
+from flask_restplus import fields, Namespace
 
 
 class StateDto:
+    """Serializer to map from single model objects to dict and viceversa.
+
+    It also has validations in order to avoid requesting db if the request
+    is not following some specific rules.
+
+    Used for: get list of resources and post new ones.
+    """
+
     api = Namespace("state", description="state related operations")
     state = api.model(
         "state",
@@ -22,6 +30,14 @@ class StateDto:
 
 
 class StateDtoDetail:
+    """Serializer to map from single model objects to dict and viceversa.
+
+    It also has validations in order to avoid requesting db if the request
+    is not following some specific rules.
+
+    Used for: single get, patch, delete.
+    """
+
     api = Namespace("state", description="state detail related operations")
     state = api.model(
         "state",

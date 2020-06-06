@@ -4,6 +4,8 @@ from .. import db
 
 
 class State(db.Model):
+    """State model for storing states into db through ORM."""
+
     __tablename__ = "state"
     id = db.Column(db.Integer, db.Sequence("state_id_seq"), primary_key=True)
     code = db.Column(db.Integer, unique=True)

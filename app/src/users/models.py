@@ -4,6 +4,8 @@ from .. import db
 
 
 class User(db.Model):
+    """User model for storing users into db through ORM."""
+
     __tablename__ = "user"
     id = db.Column(db.Integer, db.Sequence("user_id_seq"), primary_key=True)
     name = db.Column(db.String)
