@@ -41,9 +41,14 @@ class UserList(Resource):
         -------
         Tuple (dict, int)
             Response object and status code. (dict, int)
+            400 abort if user was not created
+            201, user if it was created.
         """
         data = request.json
-        return save_new_user(data=data)
+        user_creation = save_new_user(data=data)
+        if user_creation[1] == 400:
+            api.abort(400)
+        return user_creation
 
 
 @api.route("/<user_id>")
@@ -87,12 +92,16 @@ class UserDetail(Resource):
         -------
         Tuple (dict, int)
             Response object and status code. (dict, int)
+            400 Bad request ID cannot be changed
+            404 User not found
+            200 User updated
         """
         user = get_a_user(user_id)
         data = request.json
         if not user:
             api.abort(404)
-        update_user(user, data)
+        if update_user(user, data) is not None:
+            api.abort(400)
         response_object = {
             "status": "success",
             "message": "Successfully updated.",

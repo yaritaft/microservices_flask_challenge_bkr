@@ -7,7 +7,15 @@ from app.src.users.models import User
 from app.tests.base import BaseTestCase
 
 
+def empty_table(model):
+    for one_instance in model.query.all():
+        db.session.delete(one_instance)
+
+
 class TestUserModel(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+
     def test_user_creation_and_state_relation(self):
         state = State(code=133, name="tesa")
         db.session.add(state)
@@ -16,8 +24,8 @@ class TestUserModel(BaseTestCase):
             "name": "Yari Taft",
             "age": 24,
             "state": state,
-            "created_at": datetime.datetime.now().date(),
-            "updated_at": datetime.datetime.now().date(),
+            "created_at": datetime.datetime.utcnow().date(),
+            "updated_at": datetime.datetime.utcnow().date(),
         }
         my_saved_state = State.query.first()
         user = User(name="Yari Taft", age=24, state_id=state.id,)
@@ -31,7 +39,6 @@ class TestUserModel(BaseTestCase):
             "created_at": my_saved_user.created_at.date(),
             "updated_at": my_saved_user.updated_at.date(),
         }
-
         self.assertTrue(State.query.filter_by(code=133).first() == state)
         self.assertTrue(User.query.first() == user)
         self.assertTrue(saved_user_attrs == expected_saved_user)

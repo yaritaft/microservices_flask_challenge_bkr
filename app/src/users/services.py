@@ -1,4 +1,5 @@
 from app.src import db
+from app.src.states.models import State
 from app.src.users.models import User
 
 
@@ -14,7 +15,12 @@ def save_new_user(data):
     -------
     Tuple (dict, int)
         Response object and status code. (dict, int)
+        200 If user was created
+        400 If state does not exist.
     """
+    state = State.query.filter_by(id=data["state_id"]).first()
+    if state is None:
+        return (None, 400)
     new_user = User(
         name=data["name"], age=data["age"], state_id=data["state_id"]
     )
@@ -75,7 +81,8 @@ def update_user(user, data):
     data : dict
         payload to use in order to update user.
     """
-    data.pop("id", None)
+    if data.get("id") is not None:
+        return 400
     for key, value in data.items():
         setattr(user, key, value)
     db.session.commit()

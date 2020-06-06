@@ -73,7 +73,8 @@ def update_state(state, data):
     data : dict
         payload to use in order to update state.
     """
-    data.pop("id", None)
+    if data.get("id") is not None:
+        return 400
     for key, value in data.items():
         setattr(state, key, value)
     db.session.commit()

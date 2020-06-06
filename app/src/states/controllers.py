@@ -88,12 +88,16 @@ class StateDetail(Resource):
         -------
         Tuple (dict, int)
             Response object and status code. (dict, int)
+            400 Bad request ID cannot be changed
+            404 state not found
+            200 state updated
         """
         state = get_a_state(state_id)
         data = request.json
         if not state:
             api.abort(404)
-        update_state(state, data)
+        if update_state(state, data) is not None:
+            api.abort(400)
         response_object = {
             "status": "success",
             "message": "Successfully updated.",

@@ -3,18 +3,18 @@ import datetime
 
 from app.src import db
 from app.src.states.models import State
-from app.src.users.models import User
 from app.tests.base import BaseTestCase
 
 
 class TestStateModel(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+
     def test_state_creation(self):
-        state = State(code=133, name="tesa")
+        state = State(code=153, name="tesa")
         db.session.add(state)
         db.session.commit()
-        my_saved_state = State.query.filter_by(code=133).first()
-        print(state)
-        print(my_saved_state)
+        my_saved_state = State.query.filter_by(code=153).first()
         self.assertTrue(my_saved_state == state)
 
 

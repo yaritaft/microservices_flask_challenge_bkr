@@ -30,6 +30,8 @@ class ProductionConfig(Config):
     DEBUG = False
 
 
-config_by_name = dict(dev=DevelopmentConfig, prod=ProductionConfig)
+config_by_name = dict(
+    dev=DevelopmentConfig, testing=TestingConfig, prod=ProductionConfig
+)
 
 key = Config.SECRET_KEY
