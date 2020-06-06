@@ -31,3 +31,23 @@ code | int
 name | string
 updated_at | datetime
 created_at | datetime
+
+### Author
+
+### Pre requisites
+
+### How to setup database
+
+### How to load initial data
+
+### How to run tests
+
+### How to review the documentation
+
+### How to run the app (2 Methods)
+
+### How to consume the API
+
+### Decisions made
+
+### Standards applied
