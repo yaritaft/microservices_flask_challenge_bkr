@@ -81,10 +81,21 @@ You have two way of running the App:
 - Using your local python interpreter.
 
 #### Docker
+
+0) Execute script to run migrations and create db.
+```
+chmod 777 up_and_upgrade_dbs.sh
+./up_and_upgrade_dbs.sh
+```
+
+Warning: If you want to execute this and the database has previous alembic 
+versions it will raise an error. The only thing you have to do in that case is
+to access the database and drop table called alembic version.
+
 1) Open terminal in repository's root folder. And type:
 ```
 docker-compose build
-docker-compose up
+docker-compose up api
 ```
 
 2) Go to the swagger and test the app or consume api through curl or postman.
@@ -97,7 +108,7 @@ docker-compose down
 #### Local python interpreter
 0) Up and migrate db and testing. Open terminal in root folder and type:
 ```
-chmod 755 up_and_upgrade_dbs.sh
+chmod 777 up_and_upgrade_dbs.sh
 ./up_and_upgrade_dbs.sh
 ```
 

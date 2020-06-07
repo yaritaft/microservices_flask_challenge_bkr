@@ -1,16 +1,16 @@
-# CREATE MIGRATION FOLDERS FOR TESTING AND DEVELOPMENT
-# python manage.py db init --directory testing_migrations
-# python manage.py db init --directory migrations
+# SETUP Env vars
 
-# CREATE MIGRATIONS FOR TESTING AND DEVELOPMENT
-# python manage.py db migrate --message 'initial database migration' --directory testing_migrations
-# python manage.py db migrate --message 'initial database migration' --directory migrations
+cp ./.env-copy ./.env
 
 # STOPING AND STARTING DBS IN CASE THEY WERE PREVIOUSLY RUNNING.
 docker-compose down
+
+# RUN DB Dev and DB testing
 docker-compose up -d db
 docker-compose up -d db_testing
 
-# APPLY MIGRATIONS FOR TESTING ANDDEVELOPMENT
-python manage.py db upgrade --directory testing_migrations
-python manage.py db upgrade --directory migrations
+# CREATE, GENERATE AND APPLY MIGRATIONS TO DEV DB.
+
+python manage.py db init 
+python manage.py db migrate --message 'Initial migration' 
+python manage.py db upgrade 
