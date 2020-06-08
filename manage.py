@@ -31,7 +31,7 @@ def load_initial_data():
 
 @manager.command
 def run():
-    app.run()
+    app.run(host="0.0.0.0")
 
 
 @manager.command
