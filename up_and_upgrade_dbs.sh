@@ -14,3 +14,5 @@ docker-compose up -d db_testing
 python manage.py db init 
 python manage.py db migrate --message 'Initial migration' 
 python manage.py db upgrade 
+python manage.py load_initial_data
+
