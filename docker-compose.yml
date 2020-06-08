@@ -35,3 +35,4 @@ services:
       - db:db
     depends_on:
       - db
+      - db_testing
