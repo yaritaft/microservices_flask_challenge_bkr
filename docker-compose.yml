@@ -1,13 +1,6 @@
 version: '3.3'
 
 services:
-  api:
-    build: .
-    restart: always
-    command: uwsgi --thunder-lock --ini uwsgi.ini 
-    ports:
-      - "5000:5000"
-      
   db:
     restart: always
     image: postgres:11.4-alpine
@@ -19,7 +12,7 @@ services:
       POSTGRES_DB: mydatabase
     volumes:
       - ./data:/var/lib/postgresql/data
-              
+
   db_testing:
     restart: always
     image: postgres:11.4-alpine
@@ -31,3 +24,14 @@ services:
       POSTGRES_DB: mytestingdatabase
     volumes:
     - ./data:/var/lib/postgresql/data_testing
+
+  api:
+    build: .
+    restart: always
+    command: uwsgi --thunder-lock --ini uwsgi.ini 
+    ports:
+      - "5000:5000"
+    links:
+      - db:db
+    depends_on:
+      - db

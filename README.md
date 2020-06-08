@@ -151,6 +151,18 @@ Being at the same point before last step type:
 python manage.py test
 ```
 
+### Precommit hooks
+
+If you want to join the project you should add pre-commit hook to repository.
+You can do that by typing inside the virtual environment:
+
+```
+precommit install
+```
+
+This will trigger black formatter and flake8 linter. If code is not allign with
+flake8 standard then the commit will fail.
+
 ### Standards applied
 
 - PEP8
