@@ -31,8 +31,6 @@ services:
     command: uwsgi --thunder-lock --ini uwsgi.ini 
     ports:
       - "5000:5000"
-    links:
-      - db:db
     depends_on:
       - db
       - db_testing

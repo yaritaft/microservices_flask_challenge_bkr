@@ -14,7 +14,8 @@ RUN apk add --virtual .build-deps gcc musl-dev postgresql-dev libffi-dev python3
 RUN pip install --upgrade pip
 WORKDIR /app
 ADD . /app
-RUN python3 -m pip install -r requirements.txt --no-cache-dir
+RUN python3 -m pip install -r requirements.txt
+#  --no-cache-dir
 RUN apk --purge del .build-deps
 
 # CMD su uwsgi -c 'uwsgi uwsgi.ini --thunder-lock'
