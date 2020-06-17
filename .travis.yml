@@ -1,0 +1,29 @@
+
+os:
+    - linux
+dist: trusty
+sudo: required
+addons:
+    postgresql: "11.4"
+    apt:
+        packages:
+            - postgresql-11.4
+            - postgresql-server-dev-11.4
+            - postgresql-contrib-11.4
+            - python-setuptools
+
+language: python
+# python versions
+python:
+    - "3.6.9"
+# install requirements
+install:
+    - pip install -r requirements.txt
+    - pip install coveralls
+# To run tests
+script:
+    - ./up_and_upgrade_dbs.sh &
+    - coverage run manage.py test
+# send coverage report to coveralls
+after_success:
+    coveralls
