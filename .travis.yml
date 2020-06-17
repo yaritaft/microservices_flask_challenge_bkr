@@ -15,7 +15,7 @@ addons:
             - postgresql-server-dev
             - postgresql-contrib
             - python-setuptools
-            -
+            - docker-ce
 
 language: python
 # python versions
@@ -27,6 +27,7 @@ install:
     - pip install coveralls
 # To run tests
 script:
+    - export TRAVIS_WORKER_DOCKER_BINDS='/var/run/docker.sock:/var/run/docker.sock' &
     - ./up_and_upgrade_dbs.sh &
     - coverage run manage.py test
 # send coverage report to coveralls
