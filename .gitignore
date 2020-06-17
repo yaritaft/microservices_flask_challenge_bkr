@@ -13,6 +13,9 @@ data/
 # Python cache
 __pycache__/
 
+# Code coverage
+.coverage
+
 # Env local variables
 .env
 
