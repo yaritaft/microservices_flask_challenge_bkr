@@ -1,7 +1,6 @@
 
 os:
     - linux
-dist: trusty
 sudo: required
 addons:
     postgresql: "11.4"
