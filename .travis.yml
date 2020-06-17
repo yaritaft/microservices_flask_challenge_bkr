@@ -1,6 +1,9 @@
 
 os:
     - linux
+services:
+    - docker
+distro: alpine
 sudo: required
 addons:
     postgresql: "11.4"
@@ -10,6 +13,7 @@ addons:
             - postgresql-server-dev
             - postgresql-contrib
             - python-setuptools
+            -
 
 language: python
 # python versions
