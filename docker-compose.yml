@@ -29,7 +29,6 @@ services:
     build: .
     restart: always
     command: uwsgi --thunder-lock --ini uwsgi.ini 
-    network_mode: host
     ports:
       - "5000:5000"
     depends_on:
