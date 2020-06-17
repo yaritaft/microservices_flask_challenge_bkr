@@ -1,6 +1,8 @@
 
 os:
     - linux
+dist: trusty
+
 services:
     - docker
 distro: alpine
