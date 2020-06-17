@@ -6,9 +6,9 @@ addons:
     postgresql: "11.4"
     apt:
         packages:
-            - postgresql-11.4
-            - postgresql-server-dev-11.4
-            - postgresql-contrib-11.4
+            - postgresql
+            - postgresql-server-dev
+            - postgresql-contrib
             - python-setuptools
 
 language: python
