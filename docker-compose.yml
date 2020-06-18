@@ -1,36 +1,33 @@
 version: '3.3'
 
 services:
-  db:
-    restart: always
-    image: postgres:11.4-alpine
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456789
-      POSTGRES_DB: mydatabase
-    volumes:
-      - ./data:/var/lib/postgresql/data
+#   db:
+#     restart: always
+#     image: postgres:11.4-alpine
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: 123456789
+#       POSTGRES_DB: mydatabase
+#     volumes:
+#       - ./data:/var/lib/postgresql/data
 
-  db_testing:
-    restart: always
-    image: postgres:11.4-alpine
-    ports:
-      - "5434:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456789
-      POSTGRES_DB: mytestingdatabase
-    volumes:
-    - ./data:/var/lib/postgresql/data_testing
+  # db_testing:
+  #   restart: always
+  #   image: postgres:11.4-alpine
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: 123456789
+  #     POSTGRES_DB: mytestingdatabase
+  #   volumes:
+  #   - ./data:/var/lib/postgresql/data_testing
 
   api:
     build: .
-    restart: always
-    command: uwsgi --thunder-lock --ini uwsgi.ini 
-    ports:
-      - "5000:5000"
-    depends_on:
-      - db
-      - db_testing
+    # restart: always
+    # command: ./init_database.sh
+    # command: uwsgi --thunder-lock --ini uwsgi.ini 
+    # ports:
+    #   - "5000:5000"
+    # depends_on:
+    #   - db
+      # - db_testing

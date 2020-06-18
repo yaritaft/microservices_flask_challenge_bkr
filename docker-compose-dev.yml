@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  db:
+    restart: always
+    image: postgres:11.4-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: mydatabase
+
+  api:
+    # command: sh -c "python3 manage.py db upgrade"
+    command: uwsgi --thunder-lock --ini uwsgi.ini 
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:123456789@db/mydatabase
+      SECRET_KEY: mysecretkey
+      APP_ENV: dev

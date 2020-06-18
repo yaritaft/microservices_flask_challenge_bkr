@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  db_testing:
+    restart: always
+    image: postgres:11.4-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: mytestingdatabase
+
+  api:
+    command: python manage.py test
+    depends_on:
+      - db_testing
+    environment:
+        DATABASE_URL: postgresql+psycopg2://postgres:123456789@db_testing/mytestingdatabase
+        SECRET_KEY: mysecretkey
+        APP_ENV: testing

@@ -8,9 +8,22 @@ from manage import app
 from app.src.config import basedir
 
 
-class TestDevelopmentConfig(TestCase):
+# class TestDevelopmentConfig(TestCase):
+#     def create_app(self):
+#         app.config.from_object("app.src.config.DevelopmentConfig")
+#         return app
+
+#     def test_app_is_development(self):
+#         self.assertFalse(app.config["SECRET_KEY"] is "my_precious")
+#         self.assertTrue(app.config["DEBUG"] is True)
+#         self.assertTrue(
+#             app.config["SQLALCHEMY_DATABASE_URI"]
+#             == "postgresql+psycopg2://postgres:123456789@db:5432/mydatabase"
+#         )
+
+class TestTestingConfig(TestCase):
     def create_app(self):
-        app.config.from_object("app.src.config.DevelopmentConfig")
+        app.config.from_object("app.src.config.TestingConfig")
         return app
 
     def test_app_is_development(self):
@@ -19,9 +32,8 @@ class TestDevelopmentConfig(TestCase):
         self.assertFalse(current_app is None)
         self.assertTrue(
             app.config["SQLALCHEMY_DATABASE_URI"]
-            == "postgresql+psycopg2://postgres:123456789@0.0.0.0:5432/mydatabase"
+            == "postgresql+psycopg2://postgres:123456789@db_testing/mytestingdatabase"
         )
-
 
 class TestProductionConfig(TestCase):
     def create_app(self):

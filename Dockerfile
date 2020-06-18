@@ -13,9 +13,9 @@ RUN apk add postgresql-libs
 RUN apk add --virtual .build-deps gcc musl-dev postgresql-dev libffi-dev python3-dev
 RUN pip install --upgrade pip
 WORKDIR /app
-ADD . /app
+ADD ./requirements.txt /app
 RUN python3 -m pip install -r requirements.txt
 #  --no-cache-dir
+ADD . /app
 RUN apk --purge del .build-deps
-
-# CMD su uwsgi -c 'uwsgi uwsgi.ini --thunder-lock'
+# RUN python3 manage.py db upgrade
