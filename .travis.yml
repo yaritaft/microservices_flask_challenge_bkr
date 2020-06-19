@@ -8,25 +8,10 @@ services:
 distro: alpine
 sudo: required
 addons:
-    postgresql: "11.4"
     apt:
         packages:
-            - postgresql
-            - postgresql-server-dev
-            - postgresql-contrib
-            - python-setuptools
             - docker-ce
 
-# env:
-#     - DATABASE_URL=postgresql+psycopg2://postgres:123456789@db/mytestingdb
-#     - SECRET_KEY=mysecretkey
-#     - APP_ENV=testing
-
-language: python
-# python versions
-python:
-    - "3.6.9"
-# install requirements
-script:
+            script:
     - docker-compose -f docker-compose.yml -f docker-compose-test.yml build && docker-compose -f docker-compose.yml -f docker-compose-test.yml up -d --force-recreate
 
