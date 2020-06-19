@@ -1,12 +1,21 @@
-
-os:
-    - linux
-dist: trusty
-
-distro: alpine
-sudo: required
-
-
+language: python
+# python versions
+python:
+    - "3.6.9"
+env:
+    -DATABASE_URL=postgresql+psycopg2://postgres@localhost/mytestingdb
+    -SECRET_KEY=mysecretkey
+    -APP_ENV=testing
+services:
+    - "postgresql"
+# install requirements
+install:
+    - pip install -r requirements.txt
+    - psql -c 'CREATE DATABASE mytestingdb;' -U postgres
+    - pip install python-coveralls
+# To run tests
 script:
-    - docker-compose -f docker-compose.yml -f docker-compose-test.yml build && docker-compose -f docker-compose.yml -f docker-compose-test.yml up -d --force-recreate
-
+    - coverage run manage.py test
+# send coverage report to coveralls
+after_success:
+    coveralls
