@@ -10,10 +10,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456789
       POSTGRES_DB: mydatabase
-
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    
   api:
-    # command: sh -c "python3 manage.py db upgrade"
-    command: uwsgi --thunder-lock --ini uwsgi.ini 
+    command: sh -c "sleep 5 && python manage.py db upgrade && python manage.py load_initial_data  && uwsgi --thunder-lock --ini uwsgi.ini"
     ports:
       - "5000:5000"
     depends_on:

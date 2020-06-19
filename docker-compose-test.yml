@@ -1,19 +1,23 @@
 version: '3.3'
 
 services:
-  db_testing:
+  db:
     restart: always
     image: postgres:11.4-alpine
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456789
-      POSTGRES_DB: mytestingdatabase
+      POSTGRES_DB: mytestingdb
+    tmpfs:
+      - /var/lib/postgresql/data
 
   api:
-    command: python manage.py test
+    command: sh -c "sleep 5 && python manage.py test"
     depends_on:
-      - db_testing
+      - db
     environment:
-        DATABASE_URL: postgresql+psycopg2://postgres:123456789@db_testing/mytestingdatabase
-        SECRET_KEY: mysecretkey
-        APP_ENV: testing
+      DATABASE_URL: postgresql+psycopg2://postgres:123456789@db/mytestingdb
+      SECRET_KEY: mysecretkey
+      APP_ENV: testing

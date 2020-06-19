@@ -17,6 +17,11 @@ addons:
             - python-setuptools
             - docker-ce
 
+env:
+    - DATABASE_URL=postgresql+psycopg2://postgres:123456789@db/mytestingdb
+    - SECRET_KEY=mysecretkey
+    - APP_ENV=testing
+
 language: python
 # python versions
 python:
@@ -27,8 +32,7 @@ install:
     - pip install coveralls
 # To run tests
 script:
-    - export TRAVIS_WORKER_DOCKER_BINDS='/var/run/docker.sock:/var/run/docker.sock' &
-    - ./up_and_upgrade_dbs.sh &
+    - sleep 5
     - coverage run manage.py test
 # send coverage report to coveralls
 after_success:
