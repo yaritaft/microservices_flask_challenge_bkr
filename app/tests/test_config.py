@@ -30,11 +30,8 @@ class TestTestingConfig(TestCase):
         self.assertFalse(app.config["SECRET_KEY"] is "my_precious")
         self.assertTrue(app.config["DEBUG"] is True)
         self.assertFalse(current_app is None)
-        print(app.config["SQLALCHEMY_DATABASE_URI"])
-        self.assertTrue(
-            app.config["SQLALCHEMY_DATABASE_URI"]
-            == "postgresql+psycopg2://postgres:123456789@db/mytestingdb"
-        )
+        self.assertTrue(app.config["SQLALCHEMY_DATABASE_URI"] is not None)
+        self.assertTrue("mytestingdb" in app.config["SQLALCHEMY_DATABASE_URI"])
 
 class TestProductionConfig(TestCase):
     def create_app(self):
