@@ -14,7 +14,7 @@ services:
       - /var/lib/postgresql/data
 
   api:
-    command: sh -c "sleep 5 && coverage run manage.py test && coveralls"
+    command: sh -c "sleep 5 && coverage run manage.py test"
     depends_on:
       - db
     environment:
