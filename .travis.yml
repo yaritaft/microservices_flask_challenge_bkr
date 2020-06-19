@@ -28,5 +28,5 @@ python:
     - "3.6.9"
 # install requirements
 script:
-    - docker-compose -f docker-compose.yml -f docker-compose-test.yml build && docker-compose -f docker-compose.yml -f docker-compose-test.yml up --force-recreate
+    - docker-compose -f docker-compose.yml -f docker-compose-test.yml build && docker-compose -f docker-compose.yml -f docker-compose-test.yml up -d --force-recreate
 
