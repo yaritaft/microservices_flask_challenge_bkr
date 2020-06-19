@@ -17,23 +17,16 @@ addons:
             - python-setuptools
             - docker-ce
 
-env:
-    - DATABASE_URL=postgresql+psycopg2://postgres:123456789@db/mytestingdb
-    - SECRET_KEY=mysecretkey
-    - APP_ENV=testing
+# env:
+#     - DATABASE_URL=postgresql+psycopg2://postgres:123456789@db/mytestingdb
+#     - SECRET_KEY=mysecretkey
+#     - APP_ENV=testing
 
 language: python
 # python versions
 python:
     - "3.6.9"
 # install requirements
-install:
-    - pip install -r requirements.txt
-    - pip install coveralls
-# To run tests
 script:
-    - sleep 5
-    - coverage run manage.py test
-# send coverage report to coveralls
-after_success:
-    coveralls
+    - docker-compose -f docker-compose.yml -f docker-compose-test.yml build && docker-compose -f docker-compose.yml -f docker-compose-test.yml up --force-recreate
+

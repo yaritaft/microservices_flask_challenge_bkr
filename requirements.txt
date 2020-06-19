@@ -5,6 +5,7 @@ attrs==19.3.0
 black==19.10b0
 boto3==1.13.20
 botocore==1.16.20
+coverage==4.5.4
 cfgv==3.1.0
 click==7.1.2
 distlib==0.3.0
@@ -38,6 +39,7 @@ pycodestyle==2.6.0
 pydocstyle==5.0.2
 pyflakes==2.2.0
 pyrsistent==0.16.0
+python-coveralls==2.9.3
 python-dateutil==2.8.1
 python-dotenv==0.13.0
 python-editor==1.0.4
