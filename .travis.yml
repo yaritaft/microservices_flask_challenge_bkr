@@ -11,8 +11,8 @@ services:
 # install requirements
 install:
     - pip install -r requirements.txt
-    - psql -c 'CREATE DATABASE mytestingdb;' -U postgres
     - pip install python-coveralls
+    - psql -c 'CREATE DATABASE mytestingdb;' -U postgres
 # To run tests
 script:
     - coverage run manage.py test
