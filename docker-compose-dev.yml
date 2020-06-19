@@ -15,7 +15,8 @@ services:
     
   api:
     command: >
-      sh -c "sleep 5 &&
+      sh -c "pip install wait-for-it &&
+        wait-for-it --service db:5432 &&
         python manage.py db upgrade &&
         python manage.py load_initial_data  &&
         uwsgi --thunder-lock --ini uwsgi.ini"
