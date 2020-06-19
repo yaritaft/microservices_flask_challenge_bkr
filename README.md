@@ -54,6 +54,7 @@ Yari Ivan Taft
 - [Preload data](#Preload-data)
 - [Run tests](#Run-tests)
 - [Standards applied](#Standards-applied)
+- [Deployment](#Deployment)
 
 ## Technology
 
@@ -62,6 +63,7 @@ Yari Ivan Taft
 - API Framework: Flask Rest Plus
 - Containers: Docker, Docker-compose
 - Web-server: Uwsgi
+- Deployment: Coveralls and Travis
 
 ## Routes
 
@@ -72,87 +74,33 @@ Yari Ivan Taft
 ## Pre-requisites
 
 - Docker and docker compose installed.
-- Docker and docker compose working without sudo.
-- Python3 installed
-- Pip3 installed
 - Linux/Mac terminal (Or emulated linux on Windows)
-- No services running on localhost port 5432/5434 or 5000.
+- No services running on localhost port 5432 or 5000.
 
 ### Run APP
 
-You have two way of running the App:
-- Using docker-compose.
-- Using your local python interpreter.
-
-#### Docker
-
-0) Execute script to run migrations and create db.
+1) Execute script to run migrations and create db.
 ```
-chmod 777 up_and_upgrade_dbs.sh
-./up_and_upgrade_dbs.sh
-```
-
-Warning: If you want to execute this and the database has previous alembic 
-versions it will raise an error. The only thing you have to do in that case is
-to access the database and drop table called alembic version.
-
-1) Open terminal in repository's root folder. And type:
-```
-docker-compose build
-docker-compose up api
+chmod 777 ./up_dev.sh
+./up_dev.sh
 ```
 
 2) Go to the swagger and test the app or consume api through curl or postman.
 
-3) Press Control + C and then type:
-```
-docker-compose down
-```
-
-#### Local python interpreter
-0) Up and migrate db and testing. Open terminal in root folder and type:
-```
-chmod 777 up_and_upgrade_dbs.sh
-./up_and_upgrade_dbs.sh
-```
-
-1) First go with a terminal to root folder type this:
-```
-python3 -m virtualenv -p python3 venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-Last step:
-```
-uwsgi --thunder-lock --ini uwsgi.ini
-```
-Optional:
-
-If you want more flexibility instead of using uwsgi you can use manage.py
-by pressing:
-```
-python manage.py run
-```
-
-2) To shutdown the app press control + C on terminal.
+3) Press Control + C to stop the app.
 
 ### Preload data
 
-Preload data in db from states.csv file.
-
-Being at the same point before last step type:
-
-```
-python manage.py load_initial_data
-```
+If states table in db is empty, it is automatically populated with seed
+data from states.csv.
 
 ### Run tests
 
 Being at the same point before last step type:
 
 ```
-python manage.py test
+chmod 777 ./up_test.sh
+./up_test.sh
 ```
 
 ### Precommit hooks
@@ -176,3 +124,10 @@ flake8 standard then the commit will fail.
 - Flake8 Docstrings
 - Flake8 Import Order
 - Black formatting
+
+### Deployment
+
+There is a build in a remote environment in Travis. That platform checks that
+the build is valid and that none of the tests are failing. If everything is
+okay, then the code coverage is sent to coveralls and in that site the test
+coverage can be reviewed in detail.
