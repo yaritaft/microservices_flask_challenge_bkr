@@ -41,6 +41,10 @@ Yari Ivan Taft
 - Website: http://yaritaft.com
 - LinkedIn: https://www.linkedin.com/in/yari-ivan-taft-4122a7153/
 
+### Badges
+[![Build Status](https://travis-ci.org/yaritaft/microservices_flask_challenge_bkr.svg?branch=master)](https://travis-ci.org/yaritaft/microservices_flask_challenge_bkr)
+[![Coverage Status](https://coveralls.io/repos/github/yaritaft/microservices_flask_challenge_bkr/badge.svg?branch=master)](https://coveralls.io/github/yaritaft/microservices_flask_challenge_bkr?branch=master)
+
 ## Table of contents
 
 - [Technology](#Technology)
