@@ -16,8 +16,6 @@ class TestDevelopmentConfig(TestCase):
     def test_app_is_development(self):
         self.assertFalse(app.config["SECRET_KEY"] is "my_precious")
         self.assertTrue(app.config["DEBUG"] is True)
-        print(app.config["SQLALCHEMY_DATABASE_URI"])
-        self.assertTrue("mydatabase" in app.config["SQLALCHEMY_DATABASE_URI"])
 
 class TestTestingConfig(TestCase):
     def create_app(self):
