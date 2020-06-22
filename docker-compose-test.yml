@@ -15,7 +15,7 @@ services:
 
   api:
     command: >
-      sh -c "pip install wait-for-it &&
+      sh -c "pip install -r requirements-test.txt &&
       wait-for-it --service db:5432 &&
       coverage run manage.py test"
     depends_on:

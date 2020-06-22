@@ -15,7 +15,7 @@ services:
     
   api:
     command: >
-      sh -c "pip install wait-for-it &&
+      sh -c "pip install -r requirements-dev.txt &&
         wait-for-it --service db:5432 &&
         python manage.py db upgrade &&
         python manage.py load_initial_data  &&

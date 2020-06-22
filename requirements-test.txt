@@ -8,3 +8,8 @@ flask-restplus==0.13.0
 Flask-Migrate==2.5.3
 boto3==1.13.20
 Werkzeug==0.16.1
+coverage==4.5.4
+flake8==3.8.3
+flake8-docstrings==1.5.0
+flake8-import-order==0.18.1
+wait-for-it==1.1.2
