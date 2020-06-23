@@ -1,4 +1,4 @@
-from flask_restplus import fields, Namespace
+from flask_restx import fields, Namespace
 
 
 class UserDto:

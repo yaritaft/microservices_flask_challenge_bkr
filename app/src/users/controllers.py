@@ -1,5 +1,5 @@
 from flask import request
-from flask_restplus import Resource
+from flask_restx import Resource
 
 from .dtos import UserDto, UserDtoDetail
 from .services import (
