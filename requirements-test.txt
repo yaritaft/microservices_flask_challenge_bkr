@@ -1,5 +1,5 @@
 uWSGI==2.0.18
-wheel==0.34.2
+wheel==0.38.1
 psycopg2-binary==2.8.5
 marshmallow==3.6.1
 Flask-Testing==0.8.0
